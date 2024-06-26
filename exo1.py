@@ -38,5 +38,7 @@ btn_ajout_panier = WebDriverWait(driver, 10).until(
 btn_ajout_panier.click()
 
 
+
+
 driver.get_screenshot_as_file("ps4.png")
 time.sleep(5)
