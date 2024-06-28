@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import time
+from time import sleep
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -17,13 +17,14 @@ input_search = WebDriverWait(driver, 10).until(
   EC.visibility_of_element_located((By.XPATH,"//*[@id=\"search\"]"))
 )
 input_search.send_keys("ps4")
-time.sleep(10)
+
 
 btn_search = WebDriverWait(driver, 10).until(
   EC.visibility_of_element_located((By.XPATH,"//*[@id=\"header\"]/div[1]/div[2]/div[2]/div/div/div[1]/div/div/button[2]"))
 )
 
 btn_search.click()
+
 
 product_click = WebDriverWait(driver, 10).until(
   EC.visibility_of_element_located((By.XPATH,"//*[@id=\"lpBloc\"]/li[2]/div/div/form/div[1]/ul/li/img"))
@@ -37,8 +38,19 @@ btn_ajout_panier = WebDriverWait(driver, 10).until(
 
 btn_ajout_panier.click()
 
+btn_consulte_pannier = WebDriverWait(driver, 10).until(
+  EC.visibility_of_element_located((By.XPATH,"//*[@id=\"header\"]/div[1]/div[2]/div[3]/div/div[3]/a"))
+)
+# btn_consulte_pannier = WebDriverWait(driver, 10).until(
+#   EC.visibility_of_element_located((By.ID,"itemCart"))
+# )
+
+try : 
+    btn_consulte_pannier.click()
+except Exception as ex:
+  assert print("pannier introuvable")
 
 
-
-driver.get_screenshot_as_file("ps4.png")
-time.sleep(5)
+driver.get_screenshot_as_file("pannier.png")
+# time.sleep(5)
+sleep(5)
